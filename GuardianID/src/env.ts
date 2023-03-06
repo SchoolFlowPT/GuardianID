@@ -1,0 +1,1 @@
+export const BACKEND_URL = "https://services.id.aettr.pt/";

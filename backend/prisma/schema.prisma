@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model oauthclientstoscopes {
+  A String
+  B String
+
+  @@unique([A, B], map: "_OAuthClientsToScopes_AB_unique")
+  @@index([B], map: "_OAuthClientsToScopes_B_index")
+  @@map("_oauthclientstoscopes")
+}
+
+model allowedhosts {
+  id            String @unique(map: "AllowedHosts_id_key")
+  host          String
+  oauthClientId String
+
+  @@index([oauthClientId], map: "AllowedHosts_oauthClientId_fkey")
+}
+
+model backgroundimages {
+  id  String @unique(map: "BackgroundImages_id_key")
+  uri String
+}
+
+model entityconfig {
+  id        String @unique(map: "EntityConfig_id_key")
+  name      String
+  smallName String
+}
+
+model oauthclients {
+  id   String @id @unique(map: "OAuthClients_id_key")
+  name String
+}
+
+model scopes {
+  uri  String @id @unique(map: "Scopes_uri_key")
+  name String
+}
