@@ -29,12 +29,6 @@ model backgroundimages {
   uri String
 }
 
-model entityconfig {
-  id        String @unique(map: "EntityConfig_id_key")
-  name      String
-  smallName String
-}
-
 model oauthclients {
   id   String @id @unique(map: "OAuthClients_id_key")
   name String
